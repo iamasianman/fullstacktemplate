@@ -1,17 +1,22 @@
 import React from 'react';
+import MovieList from './MovieList.jsx';
+import moviesData from '../../../data/moviesData.js';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      movies: this.props.movies
+    };
   }
 
   render() {
     return (
-      <div>
-        <h1 className="title">MERN-Stack Template</h1>
-        <br />
-        <p>Happy coding!</p>
+      <div className="container">
+        <h1> Movies</h1>
+        <MovieList movies={moviesData} />
       </div>
     );
   }

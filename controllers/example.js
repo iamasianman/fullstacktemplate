@@ -12,5 +12,5 @@ module.exports = {
       console.log(data);
       res.send(data);
     });
-  },
+  }
 };
