@@ -1,22 +1,32 @@
 import React from 'react';
 import MovieList from './MovieList.jsx';
 import moviesData from '../../../data/moviesData.js';
-
-
+import Search from './Search.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      movies: this.props.movies
+      movies: moviesData,
+      filterMovies: []
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  handleSubmit(event, value) {
+    let filterMoviesArr = this.state.movies.filter(movie =>
+      movie.title.toLowerCase().includes(value.toLowerCase())
+    );
+    this.setState({
+      filterMovies: filterMoviesArr,
+      movies: filterMoviesArr
+    });
+    event.preventDefault();
+  }
   render() {
     return (
-      <div className="container">
-        <h1> Movies</h1>
-        <MovieList movies={moviesData} />
+      <div>
+        <h1>Kevin's Amazing Movie List</h1>
+        <Search handleSubmit={this.handleSubmit} />
+        <MovieList movies={this.state.movies} />
       </div>
     );
   }
